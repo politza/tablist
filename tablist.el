@@ -301,6 +301,7 @@ as argument for the function `completion-in-region'.")
     (error "Buffer is not in Tabulated List Mode"))
   (tablist-init (not tablist-minor-mode)))
 
+;;;###autoload
 (define-derived-mode tablist-mode tabulated-list-mode "TL"
   (tablist-init))
 
