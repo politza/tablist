@@ -45,7 +45,7 @@
 (defvar tablist-filter-wisent-parser nil)
 
 (defvar tablist-filter-lexer-regexps nil)
-  
+
 (defvar tablist-filter-wisent-grammar
   '(
     ;; terminals
@@ -217,7 +217,6 @@
     (tablist-filter-parser-init)
     (unparse filter noerror)))
 
-
 (defun tablist-filter-eval (filter id entry &optional named-alist)
   (cl-labels
     ((feval (filter)
@@ -340,9 +339,9 @@
      (princ "\"...\" may be used to quote names and values if necessary,
 and \(...\) to group expressions.")
      (with-current-buffer standard-output
-       (help-mode)))))                           
-  
-;; 
+       (help-mode)))))
+
+;;
 ;; **Filter Functions
 ;;
 
@@ -390,7 +389,6 @@ else return nil."
                      (tablist-filter-map fn f))
                    tail)))
     (_ (funcall fn filter))))
-
 
 ;;
 ;; Reading filter
