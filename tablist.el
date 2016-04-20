@@ -78,7 +78,7 @@ column."
             (replace-regexp-in-string
              "[\t ]+" "[\t ]*" (regexp-quote
                                 (or (thing-at-point 'line) ""))
-                                t t))
+             t t))
            (,id (tabulated-list-get-id))
            (,col (tablist-current-column)))
        (progn
@@ -291,8 +291,8 @@ as argument for the function `completion-in-region'.")
 
 (defvar savehist-additional-variables)
 (add-hook 'savehist-save-hook
-  (lambda nil
-    (add-to-list 'savehist-additional-variables 'tablist-named-filter)))
+          (lambda nil
+            (add-to-list 'savehist-additional-variables 'tablist-named-filter)))
 
 ;;;###autoload
 (define-minor-mode tablist-minor-mode
@@ -359,16 +359,16 @@ as argument for the function `completion-in-region'.")
       (cancel-timer tablist-context-window-update--timer))
     (setq tablist-context-window-update--timer
           (run-with-idle-timer 0.1 nil
-            (lambda (fn window)
-              (when (window-live-p window)
-                (with-selected-window window
-                  (set-window-dedicated-p nil nil)
-                  (save-selected-window
-                    (funcall fn id))
-                  (when (window-live-p (selected-window))
-                    (set-window-dedicated-p nil t)))))
-            tablist-context-window-function
-            tablist-context-window))))
+                               (lambda (fn window)
+                                 (when (window-live-p window)
+                                   (with-selected-window window
+                                     (set-window-dedicated-p nil nil)
+                                     (save-selected-window
+                                       (funcall fn id))
+                                     (when (window-live-p (selected-window))
+                                       (set-window-dedicated-p nil t)))))
+                               tablist-context-window-function
+                               tablist-context-window))))
 
 (defun tablist-display-context-window ()
   (interactive)
@@ -645,13 +645,13 @@ proceeds as \(BINOP N OPERAND\)."
           (list (funcall fn))))
        (t
         (cl-labels ((search (re)
-                      (let (sucess)
-                        (tablist-skip-invisible-entries)
-                        (while (and (setq sucess
-                                          (re-search-forward re nil t))
-                                    (invisible-p (point)))
-                          (tablist-forward-entry))
-                        sucess)))
+                            (let (sucess)
+                              (tablist-skip-invisible-entries)
+                              (while (and (setq sucess
+                                                (re-search-forward re nil t))
+                                          (invisible-p (point)))
+                                (tablist-forward-entry))
+                              sucess)))
           (let ((regexp (tablist-marker-regexp))
                 next-position results found)
             (save-excursion
@@ -1328,20 +1328,20 @@ Return the output buffer."
     (unless (buffer-live-p outb)
       (error "Expected a live buffer: %s" outb))
     (cl-labels
-      ((printit (entry)
-         (insert
-          (mapconcat
-           (lambda (e)
-             (unless (stringp e)
-               (setq e (car e)))
-             (if (or always-quote-p
-                     (string-match escape-re e))
-                 (concat "\""
-                         (replace-regexp-in-string "\"" "\"\"" e t t)
-                         "\"")
-               e))
-           entry separator))
-         (insert ?\n)))
+        ((printit (entry)
+                  (insert
+                   (mapconcat
+                    (lambda (e)
+                      (unless (stringp e)
+                        (setq e (car e)))
+                      (if (or always-quote-p
+                              (string-match escape-re e))
+                          (concat "\""
+                                  (replace-regexp-in-string "\"" "\"\"" e t t)
+                                  "\"")
+                        e))
+                    entry separator))
+                  (insert ?\n)))
       (with-current-buffer outb
         (let ((inhibit-read-only t))
           (erase-buffer)
@@ -1505,12 +1505,12 @@ FILTER defaults to `tablist-current-filter'."
   (when (and filter
              (null tablist-filter-suspended))
     (tablist-with-remembering-entry
-     (tablist-map-with-filter
-      (lambda nil
-        (if tablist-umark-filtered-entries
-            (save-excursion (tablist-unmark-forward)))
-        (tablist-filter-hide-entry))
-      (tablist-filter-negate filter))))
+      (tablist-map-with-filter
+       (lambda nil
+         (if tablist-umark-filtered-entries
+             (save-excursion (tablist-unmark-forward)))
+         (tablist-filter-hide-entry))
+       (tablist-filter-negate filter))))
   (force-mode-line-update))
 
 (defadvice tabulated-list-print (after tabulated-list activate)
@@ -1531,12 +1531,12 @@ FILTER defaults to `tablist-current-filter'."
   "Call FN for every unfiltered entry matching FILTER."
   (prog1
       (cl-labels ((search ()
-                    (tablist-skip-invisible-entries)
-                    (while (and (not (eobp))
-                                (not (tablist-eval-filter filter)))
-                      (tablist-forward-entry))
-                    (unless (eobp)
-                      (point-marker))))
+                          (tablist-skip-invisible-entries)
+                          (while (and (not (eobp))
+                                      (not (tablist-eval-filter filter)))
+                            (tablist-forward-entry))
+                          (unless (eobp)
+                            (point-marker))))
         (let (next-position results)
           (save-excursion
             (goto-char (point-min))
