@@ -593,13 +593,14 @@ See `tablist-put-mark'."
         (tablist-forward-entry)))
     (tablist-move-to-major-column)))
 
-(defun tablist-get-marked-items (&optional arg distinguish-one-marked)
+(defun tablist-get-marked-items (&optional arg distinguish-one-marked stop-get-current-if-empty)
   "Return marked or ARG entries."
   (let ((items (save-excursion
                  (tablist-map-over-marks
                   (lambda () (cons (tabulated-list-get-id)
                                    (tabulated-list-get-entry)))
-                  arg nil distinguish-one-marked))))
+                  arg nil distinguish-one-marked
+                  stop-get-current-if-empty))))
     (if (and distinguish-one-marked
              (eq (car items) t))
         items
@@ -625,7 +626,8 @@ proceeds as \(BINOP N OPERAND\)."
    `(,binop ,column-name ,operand)))
 
 (defun tablist-map-over-marks (fn &optional arg show-progress
-                                  distinguish-one-marked)
+                                  distinguish-one-marked
+                                  stop-map-current-if-empty)
   (prog1
       (cond
        ((and arg (integerp arg))
@@ -677,7 +679,8 @@ proceeds as \(BINOP N OPERAND\)."
                 (setq results (cons t results)))
             (if found
                 results
-              (unless (or (eobp) (invisible-p (point)))
+              (if (or stop-map-current-if-empty (eobp) (invisible-p (point)))
+                  nil
                 (list (funcall fn))))))))
     (tablist-move-to-major-column)))
 
