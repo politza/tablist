@@ -72,7 +72,7 @@
      ((not filter) `(not ,$2))
      ((filter and filter) `(and ,$1 ,$3))
      ((filter or filter) `(or ,$1 ,$3))
-     ((?( filter ?)) $2))))
+     ((?\( filter ?\)) $2))))
 
 (defun tablist-filter-parser-init (&optional reinitialize interactive)
   (interactive (list t t))
