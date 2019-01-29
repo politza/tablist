@@ -1916,7 +1916,7 @@ AWINDOW is deleted."
     (setq newwin (window--display-buffer
                   buf
                   (split-window-below height)
-                  'window alist display-buffer-mark-dedicated))
+                  'window alist))
     (tablist-window-attach newwin window)
     newwin))
 
