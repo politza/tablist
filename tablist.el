@@ -1934,7 +1934,7 @@ the 0-th column as numbers by the less-than relation."
     (funcall compare-fn
              (funcall (or read-fn 'identity)
                       (aref (cadr e1) column))
-             (funcall read-fn
+             (funcall (or read-fn 'identity)
                       (aref (cadr e2) column)))))
 
 (provide 'tablist)
