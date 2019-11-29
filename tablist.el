@@ -309,7 +309,7 @@ as argument for the function `completion-in-region'.")
 
 (defun tablist-init (&optional disable)
   (let ((cleaned-misc (cl-remove 'tablist-current-filter
-                                 mode-line-misc-info :key 'car)))
+                                 mode-line-misc-info :key #'car-safe)))
     (cond
      ((not disable)
       (set (make-local-variable 'mode-line-misc-info)
