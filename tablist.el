@@ -1938,4 +1938,7 @@ the 0-th column as numbers by the less-than relation."
                       (aref (cadr e2) column)))))
 
 (provide 'tablist)
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
 ;;; tablist.el ends here

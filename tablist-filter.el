@@ -445,4 +445,7 @@ else return nil."
       filter)))
 
 (provide 'tablist-filter)
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
 ;;; tablist-filter.el ends here
