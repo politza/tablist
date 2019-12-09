@@ -32,6 +32,10 @@
 (defvar wisent-eoi-term)
 (declare-function wisent-parse "semantic/wisent/wisent.el")
 
+;;
+;; *Variables
+;;
+
 (defvar tablist-filter-binary-operator
   '((== . tablist-filter-op-equal)
     (=~ . tablist-filter-op-regexp)
@@ -73,6 +77,10 @@
      ((filter and filter) `(and ,$1 ,$3))
      ((filter or filter) `(or ,$1 ,$3))
      ((?\( filter ?\)) $2))))
+
+;;
+;; *Filter Parsing
+;;
 
 (defun tablist-filter-parser-init (&optional reinitialize interactive)
   (interactive (list t t))
@@ -255,6 +263,10 @@
          (_ (error "Invalid filter: %s" filter)))))
     (feval filter)))
 
+;;
+;; *Filter Operators
+;;
+
 (defun tablist-filter-get-item-by-name (entry col-name)
   (let* ((col (cl-position col-name tabulated-list-format
                            :key 'car
@@ -343,7 +355,7 @@ and \(...\) to group expressions.")
        (help-mode)))))
 
 ;;
-;; **Filter Functions
+;; *Filter Functions
 ;;
 
 ;; filter ::= nil | named | fn | (OP OP1 [OP2])
@@ -392,7 +404,7 @@ else return nil."
     (_ (funcall fn filter))))
 
 ;;
-;; Reading filter
+;; *Reading Filter
 ;;
 
 (defvar tablist-filter-edit-history nil)
