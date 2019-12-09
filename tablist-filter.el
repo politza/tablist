@@ -446,6 +446,7 @@ else return nil."
 
 (provide 'tablist-filter)
 ;; Local Variables:
+;; outline-regexp: ";;\\(\\(?:[;*]+ \\| \\*+\\)[^\s\t\n]\\|###autoload\\)\\|("
 ;; indent-tabs-mode: nil
 ;; End:
 ;;; tablist-filter.el ends here
