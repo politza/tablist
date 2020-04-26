@@ -371,7 +371,7 @@ By default the filters are and'ed, unless OR-P is non-nil."
   "Remove the first operator or operand from filter.
 
 If filter starts with a negation, return filter unnegated,
-if filter starts with a dis- or conjuction, remove the first operand,
+if filter starts with a dis- or conjunction, remove the first operand,
 if filter is nil, raise an error,
 else return nil."
   (pcase filter
