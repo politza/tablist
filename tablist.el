@@ -547,7 +547,7 @@ OLD and NEW are both characters used to mark files."
               (tablist-put-mark)))))))))
 
 (defun tablist-unmark-all-marks (&optional marks interactive)
-  "Remove alls marks in MARKS.
+  "Remove all marks in MARKS.
 
 MARKS should be a string of mark characters to match and defaults
 to all marks.  Interactively, remove all marks, unless a prefix
@@ -647,13 +647,13 @@ proceeds as \(BINOP N OPERAND\)."
           (list (funcall fn))))
        (t
         (cl-labels ((search (re)
-                            (let (sucess)
+                            (let (success)
                               (tablist-skip-invisible-entries)
-                              (while (and (setq sucess
+                              (while (and (setq success
                                                 (re-search-forward re nil t))
                                           (invisible-p (point)))
                                 (tablist-forward-entry))
-                              sucess)))
+                              success)))
           (let ((regexp (tablist-marker-regexp))
                 next-position results found)
             (save-excursion
@@ -953,7 +953,7 @@ ARG the prefix-arg of the command used in
 
 ARG should be the `current-prefix-arg', FN is a function of two
 arguments \(ID ENTRY\) handling the operation.  It gets called
-repeatly with all marked items.  OPERATION is a symbol or string
+repeatedly with all marked items.  OPERATION is a symbol or string
 describing the operation, it is used for display.
 
 Optional non-nil DELETE-P means, remove the items from the display.
@@ -1369,7 +1369,7 @@ Return the output buffer."
 (defun tablist-enlarge-column (&optional column width)
   "Enlarge column COLUMN by WIDTH.
 
-This function is lazy and therfore pretty slow."
+This function is lazy and therefore pretty slow."
   (interactive
    (list nil (* (prefix-numeric-value current-prefix-arg)
                 3)))
