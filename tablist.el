@@ -779,7 +779,7 @@ STATE is a return value of `tablist-get-mark-state'."
 
 (defun tablist-repeat-over-lines (arg function)
   "Call FUNCTION for the next ARG entries."
-  ;; Move out of potentially invisble area.
+  ;; Move out of potentially invisible area.
   (tablist-skip-invisible-entries)
   (let ((pos (make-marker)))
     (while (and (> arg 0)
