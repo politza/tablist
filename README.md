@@ -1,3 +1,6 @@
+[![MELPA](https://melpa.org/packages/tablist-badge.svg)](https://melpa.org/#/tablist)
+[![MELPA Stable](https://stable.melpa.org/packages/tablist-badge.svg)](https://stable.melpa.org/#/tablist)
+
 # Tablist
 
 This package adds marks and filters to `tabulated-list-mode`. It also
