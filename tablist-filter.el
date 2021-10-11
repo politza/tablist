@@ -27,6 +27,9 @@
 (require 'semantic/wisent/comp)
 (require 'semantic/wisent/wisent))
 
+(eval-when-compile (require 'cl-lib))
+(declare-function cl-position "cl-seq")
+
 ;;; Code:
 
 (defvar wisent-eoi-term)
